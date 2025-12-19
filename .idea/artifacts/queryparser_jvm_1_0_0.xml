@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="queryparser-jvm-1.0.0">
-    <output-path>$PROJECT_DIR$/lucene-kmp/queryparser/build/libs</output-path>
-    <root id="archive" name="queryparser-jvm-1.0.0.jar">
-      <element id="module-output" name="lucene-kmp.queryparser.jvmMain" />
-    </root>
-  </artifact>
-</component>

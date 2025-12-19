@@ -7,7 +7,16 @@
 .idea/shelf/          # local code reviews
 .idea/**/target/     # plugin or framework outputs
 .idea/modules/
+.idea/artifacts/
+.idea/caches/
+.idea/lucene-kmp.iosApp.iml
+.idea/xcode.xml
+.idea/.name
+.idea/modules.xml
+.idea/migrations.xml
 
+.DS_Store
+local.properties
 /.gradle/
 /.kotlin/
 /lucene-kmp/

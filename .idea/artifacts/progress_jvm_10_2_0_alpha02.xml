@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="progress-jvm-10.2.0-alpha02">
-    <output-path>$PROJECT_DIR$/lucene-kmp/progress/build/libs</output-path>
-    <root id="archive" name="progress-jvm-10.2.0-alpha02.jar">
-      <element id="module-output" name="lucene-kmp.progress.jvmMain" />
-    </root>
-  </artifact>
-</component>
