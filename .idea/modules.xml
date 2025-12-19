@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/lp.iml" filepath="$PROJECT_DIR$/.idea/lp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/progress/lucene-kmp.progress.jvmMain.iml" filepath="$PROJECT_DIR$/.idea/modules/progress/lucene-kmp.progress.jvmMain.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lucene/analysis/common/lucene-root.lucene.analysis.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lucene/analysis/common/lucene-root.lucene.analysis.common.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lucene/analysis/icu/lucene-root.lucene.analysis.icu.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lucene/analysis/icu/lucene-root.lucene.analysis.icu.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lucene/analysis/kuromoji/lucene-root.lucene.analysis.kuromoji.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lucene/analysis/kuromoji/lucene-root.lucene.analysis.kuromoji.main.iml" />
