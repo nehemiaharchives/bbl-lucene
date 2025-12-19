@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="test-framework-jvm">
+    <output-path>$PROJECT_DIR$/bbl-kmp/test-framework/build/libs</output-path>
+    <root id="archive" name="test-framework-jvm.jar" />
+  </artifact>
+</component>

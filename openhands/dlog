@@ -1,4 +1,0 @@
-#!/bin/sh
-# -*- mode: shell-script -*-
-
-docker compose logs openhands

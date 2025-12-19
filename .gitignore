@@ -8,4 +8,5 @@
 .idea/**/target/     # plugin or framework outputs
 .idea/modules/
 
-openhands/workspace
+/lucene-kmp/
+/bbl-kmp/
