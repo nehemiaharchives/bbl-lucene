@@ -8,5 +8,7 @@
 .idea/**/target/     # plugin or framework outputs
 .idea/modules/
 
+/.gradle/
+/.kotlin/
 /lucene-kmp/
 /bbl-kmp/
