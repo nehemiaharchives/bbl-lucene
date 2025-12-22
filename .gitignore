@@ -9,15 +9,19 @@
 .idea/modules/
 .idea/artifacts/
 .idea/caches/
+.idea/runConfigurations/
 .idea/lucene-kmp.iosApp.iml
 .idea/xcode.xml
 .idea/.name
 .idea/modules.xml
 .idea/migrations.xml
 
-.DS_Store
 local.properties
 /.gradle/
 /.kotlin/
 /lucene-kmp/
 /bbl-kmp/
+
+CONTINUITY.md
+.DS_Store
+/build/
