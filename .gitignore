@@ -15,6 +15,7 @@
 .idea/.name
 .idea/modules.xml
 .idea/migrations.xml
+.idea/deploymentTargetSelector.xml
 
 local.properties
 /.gradle/
