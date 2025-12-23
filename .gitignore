@@ -21,6 +21,7 @@ local.properties
 /.kotlin/
 /lucene-kmp/
 /bbl-kmp/
+/jdk24u/
 
 CONTINUITY.md
 .DS_Store

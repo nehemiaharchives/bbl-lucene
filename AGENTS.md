@@ -52,6 +52,14 @@ It contains three main modules:
    - Java Lucene source, pinned to a specific commit during the initial porting phase.
    - **Never modify this code.** It is used only as reference when porting/fixing `lucene-kmp`.
 
+4. `jdk24u` — *Upstream JDK 24 (read-only)*
+    - Java Development Kit source, pinned to version 24
+    - **Never modify this code.** It is used only as reference when porting JDK functionality which is used in Java Lucene but not found in Kotlin/Common portion of Kotlin Standard library
+    - When you port, sometimes whole class/interface need to be ported and all method signature needs to be same or mirrored one to one.
+    - all ported jdk classes will be ported into `lucene-kmp/core/src/commonMain/kotlin/org/gnit/lucenekmp/jdkport` no deeper package than that, all flat.
+    - all ported jkd unit test classes will be ported into `lucene-kmp/core/src/commonTest/kotlin/org/gnit/lucenekmp/jdkport` no deeper package than that, all flat.
+    - for example when the jdk class is `java.text.BreakIterator`, the ported class will be `org.gnit.lucenekmp.jdkport.BreakIterator` with annotation `@Ported(from = "java.text.BreakIterator")`
+
 ## Why this parent repo exists
 
 `lucene-kmp` can pass many unit tests, but the real proof is whether it works in a *real* consumer.
