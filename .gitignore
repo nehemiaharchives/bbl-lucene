@@ -16,6 +16,7 @@
 .idea/modules.xml
 .idea/migrations.xml
 .idea/deploymentTargetSelector.xml
+.idea/Bible.iosApp.iml
 
 local.properties
 /.gradle/
