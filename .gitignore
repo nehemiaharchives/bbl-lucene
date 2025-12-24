@@ -24,6 +24,5 @@ local.properties
 /bbl-kmp/
 /jdk24u/
 
-CONTINUITY.md
 .DS_Store
 /build/
