@@ -20,9 +20,12 @@
 local.properties
 /.gradle/
 /.kotlin/
+
 /lucene-kmp/
 /bbl-kmp/
 /jdk24u/
+/morfologik-stemming/
+/dict_uk/
 
 .DS_Store
 /build/

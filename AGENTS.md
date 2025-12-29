@@ -60,6 +60,12 @@ It contains three main modules:
     - all ported jkd unit test classes will be ported into `lucene-kmp/core/src/commonTest/kotlin/org/gnit/lucenekmp/jdkport` no deeper package than that, all flat.
     - for example when the jdk class is `java.text.BreakIterator`, the ported class will be `org.gnit.lucenekmp.jdkport.BreakIterator` with annotation `@Ported(from = "java.text.BreakIterator")`
 
+5. `morfologik-stemming` — *Upstream Morfologik (read-only)*
+    - this library will be the bases of `lucene/analysis/morfologik/src/java/org/apache/lucene/analysis/morfologik/MorfologikAnalyzer.java` and `morfologik.stemming` package needed to be ported into `lucene-kmp`
+
+6. `dict-uk` *project to generate POS tag dictionary for Ukrainian language*
+    - the output data from this project will be fed to `morfologik` then becomee bases of `lucene/analysis/morfologik/src/java/org/apache/lucene/analysis/uk/UkrainianMorfologikAnalyzer.java`
+
 ## Why this parent repo exists
 
 `lucene-kmp` can pass many unit tests, but the real proof is whether it works in a *real* consumer.
