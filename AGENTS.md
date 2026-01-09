@@ -66,6 +66,8 @@ It contains three main modules:
 6. `dict-uk` *project to generate POS tag dictionary for Ukrainian language*
     - the output data from this project will be fed to `morfologik` then becomee bases of `lucene/analysis/morfologik/src/java/org/apache/lucene/analysis/uk/UkrainianMorfologikAnalyzer.java`
 
+7. `opensearch-analysis-vietnamese` — *Vietnamese analyzer from open search (read-only)*
+
 ## Why this parent repo exists
 
 `lucene-kmp` can pass many unit tests, but the real proof is whether it works in a *real* consumer.
@@ -112,6 +114,10 @@ Use Kotlin Logging:
 - `private val logger = KotlinLogging.logger {}`
 - `logger.debug { "message" }`
 
+### Porting parity & compile checks
+- Do not add/remove functions (including private helpers) solely for cleanup; keep function signatures aligned with upstream Lucene for side-by-side comparison.
+- After any code change, run JetBrains `get_file_problems` on the edited file and fix compilation errors immediately.
+
 ## Fast dev workflow (how to debug lucene-kmp via bbl-kmp)
 
 This repo is set up so you can fix `lucene-kmp` and verify the fix immediately by running `CliBibleTest.searchJesusChristInWebus()`.
@@ -139,6 +145,20 @@ Use the JetBrains MCP server to:
 
 ### Priority 2: Command line (avoid)
 Avoid using Gradle from the terminal in this repo when MCP-based run configurations are available.
+
+## Known IDE constraint (generated data)
+IntelliJ code insight is disabled for files larger than **2.56 MB**. When embedding binary data as Kotlin source (to avoid resources), do **not** generate a single huge `.kt` file. Instead:
+
+- Create a Gradle task that generates Kotlin source from the binary data.
+- Split output into multiple part files, each under ~2.5 MB.
+- Generate a small aggregator file that concatenates the parts into the final `ByteArray`.
+
+This keeps IDE indexing working and avoids unresolved references during sync.
+
+## Repo self-contained inputs
+
+- Do not reference files outside this repo in build scripts or generators. If a build needs external data (e.g., JDK or Lucene resources), copy it into `gradle/<area>/...` and reference that in Gradle so CI remains self-contained.
+- Lesson learned: CI runners won’t have sibling repos like `../lucene` or `../jdk24u`. Always vendor required inputs into this repo under `gradle/<area>/sourceFileForGeneratedData` (or similar) and point custom Gradle generator tasks to those in-repo paths.
 
 ## Where to find deeper module-specific rules
 

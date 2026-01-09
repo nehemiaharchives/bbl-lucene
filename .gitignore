@@ -26,6 +26,9 @@ local.properties
 /jdk24u/
 /morfologik-stemming/
 /dict_uk/
+/opensearch-analysis-vietnamese/
+/coccoc-tokenizer/
+/stopwords-iso/
 
 .DS_Store
 /build/
