@@ -30,6 +30,7 @@ local.properties
 /opensearch-analysis-vietnamese/
 /coccoc-tokenizer/
 /stopwords-iso/
+/randomizedtesting/
 
 .DS_Store
 /build/
