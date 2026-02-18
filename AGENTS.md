@@ -114,6 +114,30 @@ Use Kotlin Logging:
 - `private val logger = KotlinLogging.logger {}`
 - `logger.debug { "message" }`
 
+### Debugging Methods (Kotlin/Native + Hang Timeouts)
+
+#### Kotlin/Native-specific debugging method
+- Reproduce first on the smallest failing native target (`linuxX64Test` on Linux, `macosX64Test` on macOS), then confirm parity with `jvmTest`.
+- Add narrowly-scoped, structured debug logs around suspected boundaries (merge lifecycle, close/rollback, latch/signal handoff, file refcount changes).
+- Keep log payloads stable and grep-friendly: include `phase`, `run`, `attempt`, elapsed time, and key counters (merge-thread count, pending merges, segment count, latch counts).
+- When a native-only crash or hang appears, log state both before and after each blocking or state-transition point; avoid broad noisy logs.
+- Preserve proven debugging infra in codebase so it can be reused for future native failures; remove only unrelated or redundant logs after root cause is confirmed.
+- Use `lucene-kmp/core/src/commonMain/kotlin/org/gnit/lucenekmp/util/NativeCrashProbe.kt` for native crash/hang probes:
+- update probe fields at major phase boundaries (`run/attempt/phase/updates` and relevant counters), then call probe dump/signal helpers when timeout/fatal-path is detected so native backtraces include current probe state.
+- register probe updates in long-running loops/merge paths to avoid stale crash snapshots.
+- On Linux native test runs, use `lucene-kmp/core/src/linuxX64Main/kotlin/org/gnit/lucenekmp/util/LoggingConfig.kt` to enable deterministic logging setup early in test startup (before suspicious operations), and keep logger format stable so probe lines are easy to correlate with test phases.
+
+#### Hang-debugging method with `TimeSource.Monotonic`
+- Replace unbounded waits/spins with bounded loops using `TimeSource.Monotonic.markNow()` and explicit timeout limits.
+- During wait loops, emit periodic state snapshots (not every iteration) so stalls show exact phase and ownership.
+- On timeout, throw `AssertionError` immediately with a full state snapshot:
+- elapsed duration
+- current phase
+- latch/counter values
+- merge-thread counts
+- pending-merge and segment/file state as relevant
+- Prefer this fail-fast timeout pattern in tests and debug-only paths to turn silent hangs into actionable failures.
+
 ### Porting parity & compile checks
 - Do not add/remove functions (including private helpers) solely for cleanup; keep function signatures aligned with upstream Lucene for side-by-side comparison.
 - After any code change, run JetBrains `get_file_problems` on the edited file and fix compilation errors immediately.
@@ -145,6 +169,17 @@ Use the JetBrains MCP server to:
 
 ### Priority 2: Command line (avoid)
 Avoid using Gradle from the terminal in this repo when MCP-based run configurations are available.
+
+## Git Commit Policy (GPG Signed)
+
+- When user asks to commit, always create a GPG-signed commit.
+- Use per-command unsandboxed execution (escalated command) for signing commands.
+- Run commit command in a PTY and export `GPG_TTY=$(tty)` in the same command.
+- Standard commit flow:
+1. `git add <intended files only>`
+2. `export GPG_TTY=$(tty) && git commit -S -m "<message>"`
+3. `git log --show-signature -1` and confirm `Good signature`.
+- Do not fall back to unsigned commit unless the user explicitly asks for unsigned commit.
 
 ## Known IDE constraint (generated data)
 IntelliJ code insight is disabled for files larger than **2.56 MB**. When embedding binary data as Kotlin source (to avoid resources), do **not** generate a single huge `.kt` file. Instead:
