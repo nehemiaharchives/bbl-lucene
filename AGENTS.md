@@ -141,6 +141,13 @@ Use Kotlin Logging:
 ### Porting parity & compile checks
 - Do not add/remove functions (including private helpers) solely for cleanup; keep function signatures aligned with upstream Lucene for side-by-side comparison.
 - After any code change, run JetBrains `get_file_problems` on the edited file and fix compilation errors immediately.
+- Exception for development speed: Java-Kotlin numeric-value discrepancies are allowed only when reducing test/runtime iteration counts to speed up local iteration or CI.
+- Every such discrepancy must have an inline comment placed immediately after the exact reduced line (not above it).
+- Required comment format:
+  - Starts with `// TODO`
+  - Lists explicit reductions (example: `reduced valueA = x1 to x2, valueB = y1 to y2`)
+  - Ends with `for dev speed`
+  - Example: `// TODO reduced valueA = 1025 to 5, valueB = 500 to 3 for dev speed`
 
 ## Fast dev workflow (how to debug lucene-kmp via bbl-kmp)
 
