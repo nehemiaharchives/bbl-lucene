@@ -17,10 +17,16 @@
 .idea/migrations.xml
 .idea/deploymentTargetSelector.xml
 .idea/Bible.iosApp.iml
+.idea/codeStyles/
+.idea/dictionaries/project.xml
 
 local.properties
 /.gradle/
 /.kotlin/
+.gradle-local/
+
+/.vscode/
+/gradle/gradle-daemon-jvm.properties
 
 /lucene-kmp/
 /bbl-kmp/
@@ -31,6 +37,7 @@ local.properties
 /coccoc-tokenizer/
 /stopwords-iso/
 /randomizedtesting/
+/JavaHamcrest/
 
 .DS_Store
 /build/
