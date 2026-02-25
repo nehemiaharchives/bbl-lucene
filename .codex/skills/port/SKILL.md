@@ -46,8 +46,8 @@ And because jdk package structure will be lost, for only jdk port class/interfac
 
 Step 1. Create the exact same of the class/interface by replacing .java to .kt in the target package. e.g. `ClazzToPort.java` to `ClazzToPort.kt`
 Step 2. First copy import statements which starts with `org.apache.lucene` by replacing it with `org.gnit.lucenekmp` do not port jdk import statements at this time.
-Step 3. run `get_file_problems` tool of jetbrains mcp server to the file. unresolved reference compilation error means un-ported-dependency class/interface, leave current class as it is and start over from Step 1 for that class.
-Step 4. After import-statements-only class/interface file `ClazzToPort.kt` get no compilation error with `get_file_problems`, start porting the body of the code.
+Step 3. run `open_file_in_editor` tool of jetbrains mcp server for the target file, then run `get_file_problems` tool for the same file. `get_file_problems` may not emit diagnostics unless the file is opened in the editor first. unresolved reference compilation error means un-ported-dependency class/interface, leave current class as it is and start over from Step 1 for that class.
+Step 4. After import-statements-only class/interface file `ClazzToPort.kt` gets no compilation error with `open_file_in_editor` + `get_file_problems`, start porting the body of the code.
 Step 5. During porting body of the class, if you find any jdk specific class used, try to find it in `jdkport` package and if you find import it and use it.
 Step 6. If you did not find `jdkport` class/interface, do one of the following:
 Case 1 -> Functional interface: interfaces in `java.util.function` should be replaced with kotlin function representation, e.g. `Predicate<T>` to be `(T) -> Boolean`, `IntFunction<R>` to be `(Int) -> R`
@@ -60,7 +60,7 @@ Case else -> go to Step 7 which is porting new jdk port
 Step 7. Create a empty kotlin class/interface `jdkport` and try to find if all the dependencies or super class, super interface is already in `jdkport` package, if not found, port super class/interface recursively.  
 Step 8. If all the super class/interface of the jdk class ported into `jdkport` package, start porting the jdkport class.
 Step 9. If there are no missing `jdkport` class, and if there are no un-ported-dependency class/interface from Java Lucene, port the code of the `ClazzToPort.kt`
-Step 10. After porting logic and behaviors code, run `get_file_problems` tool of jetbrains mcp server and edit and iterate over until all errors resolves.
+Step 10. After porting logic and behaviors code, run `open_file_in_editor` first, then run `get_file_problems` tool of jetbrains mcp server, and edit and iterate over until all errors resolves.
 Step 11. Final parity pass: compare Java and Kotlin files side-by-side. Check for missing or misordered member properties, functions, and logic blocks. Add missing pieces and reorder Kotlin members/functions/logic to match Java ordering so both files stay side-by-side with full behavior and implementation parity.
 Step 12. In test classes, review each superclass in the inheritance chain and check for missing inherited `testXXX` functions. If missing, add all overrides grouped by superclass at the bottom of the concrete class using `@Test override fun testXXX() = super.testXXX()`.
 

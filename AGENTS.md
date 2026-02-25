@@ -140,7 +140,8 @@ Use Kotlin Logging:
 
 ### Porting parity & compile checks
 - Do not add/remove functions (including private helpers) solely for cleanup; keep function signatures aligned with upstream Lucene for side-by-side comparison.
-- After any code change, run JetBrains `get_file_problems` on the edited file and fix compilation errors immediately.
+- After any code change, run JetBrains `open_file_in_editor` on the edited file, then run `get_file_problems` on that same file and fix compilation errors immediately.
+- Reason: `get_file_problems` may not emit diagnostics unless the file is opened in the editor first.
 - Exception for development speed: Java-Kotlin numeric-value discrepancies are allowed only when reducing test/runtime iteration counts to speed up local iteration or CI.
 - Speed-up reductions must be order-of-magnitude changes, not tiny tweaks:
   - Target example: if a test takes ~10 minutes, reduce to ~3 seconds when possible.

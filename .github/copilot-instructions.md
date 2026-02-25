@@ -51,6 +51,8 @@ Under this directory you find two sub directories:
 
 ### Priority 1, JetBrains MCP Server
 When you have access to JetBrains MCP server, you should use the IDEA's internal test runner. Using the mcp, find run configuration then run test via found run configuration to compile, test, read test result and do other works needed for debugging and development.
+For compile diagnostics on changed files, run `open_file_in_editor` first, then run `get_file_problems` on that same file.
+Reason: `get_file_problems` may not emit diagnostics unless the file is opened in the editor first.
 
 ### Priority 2, Gradle command line
 When you don't have access to JetBrains MCP server, you should use the command line Gradle test runner.
