@@ -1,53 +1,55 @@
 Goal (incl. success criteria):
-- Enable a minimal compatible `testGeneral` in `TestVirtualMethod`, while keeping `testExceptions` ignored.
-- Success criteria: at least one active test runs in `TestVirtualMethod` and file compiles cleanly.
+- Add `earlyoom` safety instructions to both root and `lucene-kmp` `AGENTS.md` so Gradle runs are protected from full-system freezes under low memory.
+- Success criteria: explicit guidance added for `./gradlew` usage with regex that targets Gradle/Java processes for OOM kill preference.
 
 Constraints/Assumptions:
-- Follow workspace/module AGENTS instructions for exact Lucene parity and Kotlin common compatibility.
-- Do not edit upstream `lucene/` sources.
-- Use JetBrains inspections for compile validation after edits.
+- Work in `lucene-kmp` test/code paths only; keep instrumentation scoped and reversible.
+- Use compile-first, then timed test runs with requested timeout policy when running targeted tests.
+- User requested increasing linuxX64 timeout and continuing autonomously.
 
 Key decisions:
-- Follow user constraint: keep incompatible `TestVirtualMethod` test functions by name, but use `@Ignore` and comment out internal logic where Java reflection behavior is unavailable in KMP common.
-- For option `1`, activate `testGeneral` with expectations matching minimal `VirtualMethod.kt` behavior.
+- `testThreads2` overrides in lucene90 test classes all delegate to `super.testThreads2()`, so hotspot tracing must start at the shared superclass implementation.
+- Applied minimal hot-loop optimization in `testThreads2`: cache `storedFields.document(j)` once per doc and reuse for all stored-field accesses, removing repeated document materializations in the threaded inner loop.
 
 State:
-- Completed.
+- In progress (active implementation).
 
 Done:
-- Located source files:
-  - `lucene/lucene/core/src/test/org/apache/lucene/util/TestVirtualMethod.java`
-  - `lucene-kmp/core/src/commonMain/kotlin/org/gnit/lucenekmp/util/VirtualMethod.kt`
-- Confirmed `VirtualMethod.kt` is minimal and not Java-reflection compatible.
-- Added `lucene-kmp/core/src/commonTest/kotlin/org/gnit/lucenekmp/util/TestVirtualMethod.kt`.
-- Preserved test names `testGeneral` and `testExceptions`.
-- Marked both tests with `@Ignore` and kept original Java logic as comments inside test bodies per user instruction.
-- Enabled `testGeneral` (removed `@Ignore`) and replaced body with minimal-compatible assertions based on current `VirtualMethod.kt` behavior.
-- Kept `testExceptions` as `@Ignore`.
-- Ran `open_file_in_editor` then `get_file_problems` for `TestVirtualMethod.kt`.
-- Ran `lucene-kmp [compileTestKotlinJvm]` run configuration successfully.
-- Final `get_file_problems` result: no errors.
-- Reproduced user-reported failure via run config `TestVirtualMethod`:
-  - `testGeneral` failed at line 65 (`assertFalse` expectation mismatch).
-- Updated `testGeneral` assertions for `Nested4` `isOverriddenAsOf(...)` from `assertFalse` to `assertTrue` for both `publicTestMethod` and `protectedTestMethod`, matching minimal `VirtualMethod.kt`.
-- Re-ran run config `TestVirtualMethod`:
-  - `testGeneral`: `SUCCESS`
-  - `testExceptions`: `SKIPPED` (ignored)
-  - overall build: `SUCCESS`.
-- Removed unused `assertFalse` import and re-ran `open_file_in_editor` + `get_file_problems`:
-  - no errors.
+- Confirmed `testThreads2` override locations:
+  - `lucene-kmp/core/src/commonTest/kotlin/org/gnit/lucenekmp/codecs/lucene90/TestLucene90DocValuesFormat.kt`
+  - `lucene-kmp/core/src/commonTest/kotlin/org/gnit/lucenekmp/codecs/lucene90/TestLucene90DocValuesFormatMergeInstance.kt`
+  - `lucene-kmp/core/src/commonTest/kotlin/org/gnit/lucenekmp/codecs/lucene90/TestLucene90DocValuesFormatVariableSkipInterval.kt`
 
 Now:
-- Report green run and final file status.
+- Report the AGENTS updates and wait for next action.
 
 Next:
-- Continue with next requested port/fix task.
+- Optionally run a small safe test command using the new `earlyoom` guard pattern if requested.
 
 Open questions (UNCONFIRMED if needed):
-- UNCONFIRMED: JetBrains MCP run-configuration execution reliability in current session (previous tool timed out before returning run output).
+- None.
 
 Working set (files/ids/commands):
-- `CONTINUITY.md`
-- `lucene/lucene/core/src/test/org/apache/lucene/util/TestVirtualMethod.java`
-- `lucene-kmp/core/src/commonMain/kotlin/org/gnit/lucenekmp/util/VirtualMethod.kt`
-- `lucene-kmp/core/src/commonTest/kotlin/org/gnit/lucenekmp/util/TestVirtualMethod.kt`
+- `lucene-kmp/core/src/commonTest/kotlin/org/gnit/lucenekmp/codecs/lucene90/TestLucene90DocValuesFormat.kt`
+- `lucene-kmp/core/src/commonTest/kotlin/org/gnit/lucenekmp/codecs/lucene90/TestLucene90DocValuesFormatMergeInstance.kt`
+- `lucene-kmp/core/src/commonTest/kotlin/org/gnit/lucenekmp/codecs/lucene90/TestLucene90DocValuesFormatVariableSkipInterval.kt`
+- `lucene-kmp/test-framework/src/commonMain/kotlin/org/gnit/lucenekmp/tests/index/LegacyBaseDocValuesFormatTestCase.kt`
+- commands: targeted `:core:jvmTest`/`:core:linuxX64Test` for `testThreads2`
+- Implemented optimization in:
+  - `lucene-kmp/test-framework/src/commonMain/kotlin/org/gnit/lucenekmp/tests/index/LegacyBaseDocValuesFormatTestCase.kt`
+    - `testThreads2` now uses `val storedDoc = storedFields.document(j)` once per doc.
+- IDE checks:
+  - `open_file_in_editor` success on modified file.
+  - `get_file_problems` reports no errors (warnings only).
+- Compile-first via IDE run configs:
+  - `lucene-kmp [compileTestKotlinJvm]` passed.
+  - `lucene-kmp [compileTestKotlinLinuxX64]` passed.
+- JVM targeted run (no timeout):
+  - `:core:jvmTest --tests org.gnit...TestLucene90DocValuesFormat.testThreads2` passed; suite time `2.7s`.
+- Timed runs attempted:
+  - `timeout 1s` JVM and `timeout 10s` linuxX64 both terminated before test execution due Gradle startup/task graph overhead.
+- linuxX64 targeted run (no timeout) is currently blocked in this environment by repeated timeout during `linkDebugTestLinuxX64` in terminal tool.
+- Added OOM-protection instructions to:
+  - `AGENTS.md`
+  - `lucene-kmp/AGENTS.md`
+  - Both now require starting `/usr/bin/earlyoom` with Gradle/Java prefer-regex before terminal `./gradlew` runs.

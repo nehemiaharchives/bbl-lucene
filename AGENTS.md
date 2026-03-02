@@ -182,6 +182,14 @@ Use the JetBrains MCP server to:
 ### Priority 2: Command line (avoid)
 Avoid using Gradle from the terminal in this repo when MCP-based run configurations are available.
 
+### OOM guard for `./gradlew` (required on local desktop)
+When running any `./gradlew` command from terminal, start `earlyoom` first so low-memory conditions kill Gradle/Java workloads before the desktop freezes.
+
+- Use `/usr/bin/earlyoom` with a regex preferring Gradle/Java processes:
+  - `sudo /usr/bin/earlyoom -r 60 --prefer '(^|/)(gradle|gradlew|java|kotlinc)( |$)' --avoid '(Xorg|Xwayland|gnome-shell|plasmashell|kwin_wayland)'`
+- Keep `earlyoom` active while Gradle runs, then stop it if you started it manually.
+- If `earlyoom` is already managed by systemd/service, keep that service enabled and ensure the same Gradle/Java prefer-regex is configured.
+
 ## Git Commit Policy (GPG Signed)
 
 - When user asks to commit, always create a GPG-signed commit.
