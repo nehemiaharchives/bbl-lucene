@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/lucene-kmp" name="lucene-kmp">
+                <projects>
+                  <project path="$PROJECT_DIR$/lucene-kmp" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/analysis" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/analysis/common" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/analysis/extra" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/analysis/icu" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/analysis/kuromoji" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/analysis/morfologik" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/analysis/nori" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/analysis/opennlp" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/analysis/phonetic" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/analysis/smartcn" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/analysis/stempel" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/codecs" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/core" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/progress" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/queryparser" />
+                  <project path="$PROJECT_DIR$/lucene-kmp/test-framework" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/bbl-kmp" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/bbl-kmp" />
+            <option value="$PROJECT_DIR$/bbl-kmp/androidApp" />
+            <option value="$PROJECT_DIR$/bbl-kmp/cli" />
+            <option value="$PROJECT_DIR$/bbl-kmp/cli/core" />
+            <option value="$PROJECT_DIR$/bbl-kmp/cli/packer" />
+            <option value="$PROJECT_DIR$/bbl-kmp/cli/search" />
+            <option value="$PROJECT_DIR$/bbl-kmp/cli/search/common" />
+            <option value="$PROJECT_DIR$/bbl-kmp/cli/search/extra" />
+            <option value="$PROJECT_DIR$/bbl-kmp/cli/search/kuromoji" />
+            <option value="$PROJECT_DIR$/bbl-kmp/cli/search/morfologik" />
+            <option value="$PROJECT_DIR$/bbl-kmp/cli/search/nori" />
+            <option value="$PROJECT_DIR$/bbl-kmp/cli/search/smartcn" />
+            <option value="$PROJECT_DIR$/bbl-kmp/composeApp" />
+            <option value="$PROJECT_DIR$/bbl-kmp/server" />
+            <option value="$PROJECT_DIR$/bbl-kmp/shared" />
+            <option value="$PROJECT_DIR$/bbl-kmp/test-framework" />
+            <option value="$PROJECT_DIR$/lucene-kmp" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/common" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/extra" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/icu" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/kuromoji" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/morfologik" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/nori" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/opennlp" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/phonetic" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/smartcn" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/stempel" />
+            <option value="$PROJECT_DIR$/lucene-kmp/codecs" />
+            <option value="$PROJECT_DIR$/lucene-kmp/core" />
+            <option value="$PROJECT_DIR$/lucene-kmp/progress" />
+            <option value="$PROJECT_DIR$/lucene-kmp/queryparser" />
+            <option value="$PROJECT_DIR$/lucene-kmp/test-framework" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/lucene/build-tools/build-infra" name="build-infra">
+                <projects>
+                  <project path="$PROJECT_DIR$/lucene/build-tools/build-infra" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/lucene/build-tools/missing-doclet" name="missing-doclet">
+                <projects>
+                  <project path="$PROJECT_DIR$/lucene/build-tools/missing-doclet" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/lucene" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/lucene" />
+            <option value="$PROJECT_DIR$/lucene/build-tools/build-infra" />
+            <option value="$PROJECT_DIR$/lucene/build-tools/missing-doclet" />
+            <option value="$PROJECT_DIR$/lucene/lucene" />
+            <option value="$PROJECT_DIR$/lucene/lucene/analysis" />
+            <option value="$PROJECT_DIR$/lucene/lucene/analysis.tests" />
+            <option value="$PROJECT_DIR$/lucene/lucene/analysis/common" />
+            <option value="$PROJECT_DIR$/lucene/lucene/analysis/icu" />
+            <option value="$PROJECT_DIR$/lucene/lucene/analysis/kuromoji" />
+            <option value="$PROJECT_DIR$/lucene/lucene/analysis/morfologik" />
+            <option value="$PROJECT_DIR$/lucene/lucene/analysis/morfologik.tests" />
+            <option value="$PROJECT_DIR$/lucene/lucene/analysis/nori" />
+            <option value="$PROJECT_DIR$/lucene/lucene/analysis/opennlp" />
+            <option value="$PROJECT_DIR$/lucene/lucene/analysis/phonetic" />
+            <option value="$PROJECT_DIR$/lucene/lucene/analysis/smartcn" />
+            <option value="$PROJECT_DIR$/lucene/lucene/analysis/stempel" />
+            <option value="$PROJECT_DIR$/lucene/lucene/backward-codecs" />
+            <option value="$PROJECT_DIR$/lucene/lucene/benchmark" />
+            <option value="$PROJECT_DIR$/lucene/lucene/benchmark-jmh" />
+            <option value="$PROJECT_DIR$/lucene/lucene/classification" />
+            <option value="$PROJECT_DIR$/lucene/lucene/codecs" />
+            <option value="$PROJECT_DIR$/lucene/lucene/core" />
+            <option value="$PROJECT_DIR$/lucene/lucene/core.tests" />
+            <option value="$PROJECT_DIR$/lucene/lucene/demo" />
+            <option value="$PROJECT_DIR$/lucene/lucene/distribution" />
+            <option value="$PROJECT_DIR$/lucene/lucene/distribution.tests" />
+            <option value="$PROJECT_DIR$/lucene/lucene/documentation" />
+            <option value="$PROJECT_DIR$/lucene/lucene/expressions" />
+            <option value="$PROJECT_DIR$/lucene/lucene/facet" />
+            <option value="$PROJECT_DIR$/lucene/lucene/grouping" />
+            <option value="$PROJECT_DIR$/lucene/lucene/highlighter" />
+            <option value="$PROJECT_DIR$/lucene/lucene/join" />
+            <option value="$PROJECT_DIR$/lucene/lucene/luke" />
+            <option value="$PROJECT_DIR$/lucene/lucene/memory" />
+            <option value="$PROJECT_DIR$/lucene/lucene/misc" />
+            <option value="$PROJECT_DIR$/lucene/lucene/monitor" />
+            <option value="$PROJECT_DIR$/lucene/lucene/queries" />
+            <option value="$PROJECT_DIR$/lucene/lucene/queryparser" />
+            <option value="$PROJECT_DIR$/lucene/lucene/replicator" />
+            <option value="$PROJECT_DIR$/lucene/lucene/sandbox" />
+            <option value="$PROJECT_DIR$/lucene/lucene/spatial-extras" />
+            <option value="$PROJECT_DIR$/lucene/lucene/spatial-test-fixtures" />
+            <option value="$PROJECT_DIR$/lucene/lucene/spatial3d" />
+            <option value="$PROJECT_DIR$/lucene/lucene/suggest" />
+            <option value="$PROJECT_DIR$/lucene/lucene/test-framework" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/lucene-kmp" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/lucene-kmp" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/common" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/extra" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/icu" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/kuromoji" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/morfologik" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/nori" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/opennlp" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/phonetic" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/smartcn" />
+            <option value="$PROJECT_DIR$/lucene-kmp/analysis/stempel" />
+            <option value="$PROJECT_DIR$/lucene-kmp/codecs" />
+            <option value="$PROJECT_DIR$/lucene-kmp/core" />
+            <option value="$PROJECT_DIR$/lucene-kmp/progress" />
+            <option value="$PROJECT_DIR$/lucene-kmp/queryparser" />
+            <option value="$PROJECT_DIR$/lucene-kmp/test-framework" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
