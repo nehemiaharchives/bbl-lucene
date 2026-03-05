@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$/../../../bbl-kmp/composeApp/build/kotlin-multiplatform-resources/aggregated-resources/iosX64" dumb="true">
+      <excludeFolder url="file://$MODULE_DIR$/../../../bbl-kmp/composeApp/build/kotlin-multiplatform-resources/aggregated-resources/iosX64/composeResources/org.gnit.bible.cmp/files/bblpacks" />
+    </content>
+  </component>
+</module>

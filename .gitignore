@@ -13,12 +13,13 @@
 .idea/lucene-kmp.iosApp.iml
 .idea/xcode.xml
 .idea/.name
-.idea/modules.xml
 .idea/migrations.xml
 .idea/deploymentTargetSelector.xml
 .idea/Bible.iosApp.iml
 .idea/codeStyles/
 .idea/dictionaries/project.xml
+!.idea/modules.xml
+!idea/modules/
 
 local.properties
 /.gradle/

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$/../../../bbl-kmp/server/src/main" dumb="true">
+      <excludeFolder url="file://$MODULE_DIR$/../../../bbl-kmp/server/src/main/resources/files/bblpacks" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../bbl-kmp/server/src/main/resources/files/bbltexts" />
+    </content>
+  </component>
+</module>
