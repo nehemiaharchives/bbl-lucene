@@ -19,7 +19,7 @@
 .idea/codeStyles/
 .idea/dictionaries/project.xml
 !.idea/modules.xml
-!idea/modules/
+!.idea/modules/
 
 local.properties
 /.gradle/
