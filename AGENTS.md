@@ -138,6 +138,33 @@ Use Kotlin Logging:
 - pending-merge and segment/file state as relevant
 - Prefer this fail-fast timeout pattern in tests and debug-only paths to turn silent hangs into actionable failures.
 
+### Current Multithreading Port Status
+- `lucene-kmp` multithreading is still only partially ported. Many upstream Java `synchronized` methods/blocks remain commented out as `/*@Synchronized*/` or `//synchronized(...) {` placeholders.
+- When a concurrent indexing/update/flush/commit test fails, treat those commented synchronization sites as the first suspects.
+- Proven recent failure: `TestBinaryDocValuesUpdates.testStressMultiThreading` failed because Java monitor boundaries had been lost around delete-queue mutation and queue replacement during concurrent update/full-flush/commit.
+- The successful fix pattern was:
+- compare the failing Kotlin path to the upstream Java path
+- restore the exact missing synchronization boundary with an explicit `org.gnit.lucenekmp.jdkport.ReentrantLock`
+- keep the critical section as close to Java as possible
+- rerun the narrow failing test first, then rerun the broader class/suite
+- The specific synchronization points that were restored successfully are:
+- `lucene-kmp/core/src/commonMain/kotlin/org/gnit/lucenekmp/index/DocumentsWriterDeleteQueue.kt`
+- `add`
+- `updateSlice`
+- `advanceQueue`
+- `close`
+- `lucene-kmp/core/src/commonMain/kotlin/org/gnit/lucenekmp/index/DocumentsWriter.kt`
+- `applyDeleteOrUpdate`
+- `abort`
+- `nextSequenceNumber`
+- `resetDeleteQueue`
+- Failure signatures from this area include:
+- delete-slice invariant errors such as `slice property violated between the head on the tail must not be a null node`
+- sequence-number assertions involving `maxSeqNo` / `nextSeqNo`
+- `AlreadyClosedException` during concurrent update/commit/full-flush
+- tests that pass when thread count is reduced but fail at original concurrency
+- Do not assume the current coroutine/Mutex/ReentrantLock emulation is complete globally. Similar failures in other tests should usually be fixed by restoring the missing Java synchronization boundary in the affected class, not by weakening the test.
+
 ### Porting parity & compile checks
 - Do not add/remove functions (including private helpers) solely for cleanup; keep function signatures aligned with upstream Lucene for side-by-side comparison.
 - After any code change, run JetBrains `open_file_in_editor` on the edited file, wait 2 seconds, then run `get_file_problems` on that same file and fix compilation errors immediately.
