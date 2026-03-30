@@ -68,6 +68,10 @@ It contains three main modules:
 
 7. `opensearch-analysis-vietnamese` — *Vietnamese analyzer from open search (read-only)*
 
+8．`bbl` — *former version of bbl command line bible which is based on kotlin/jvm*
+    - The repo is read only
+    - This repo is for comparison or port with `bbl-kmp`.
+
 ## Why this parent repo exists
 
 `lucene-kmp` can pass many unit tests, but the real proof is whether it works in a *real* consumer.

@@ -39,6 +39,7 @@ local.properties
 /stopwords-iso/
 /randomizedtesting/
 /JavaHamcrest/
+/bbl/
 
 .DS_Store
 /build/
